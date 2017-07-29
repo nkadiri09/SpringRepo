@@ -12,7 +12,8 @@ public class Circle implements Shape {
 		return center;
 	}
 
-	@Required
+	@Autowired
+	@Qualifier("circleRalated")
 	public void setCenter(Point center) {
 		this.center = center;
 	}

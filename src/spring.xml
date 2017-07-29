@@ -16,7 +16,7 @@
 	</bean>
 
 	<bean id="pointA" class="org.naren.kadiri.Point">
-		<qualifier value="circleRelated" />
+		<qualifier value="circleRalated" />
 		<property name="x" value="${pointA.pointX}" />
 		<property name="y" value="${pointA.pointY}" />
 	</bean>
