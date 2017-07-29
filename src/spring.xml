@@ -32,17 +32,17 @@
 	</bean>
 
 	<bean id="circle" class="org.naren.kadiri.Circle">
-		<property name="center" ref="pointC" />
+		<!-- <property name="center" ref="pointC" /> -->
 	</bean>
 
 	<!-- <bean class="org.naren.kadiri.DisplayBeanPostProcessor"></bean> -->
-	<bean class="org.naren.kadiri.DisplayNameBeanPP"></bean>
+	<!-- <bean class="org.naren.kadiri.DisplayNameBeanPP"></bean> -->
 
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations" value="pointsConfig.properties" />
 	</bean>
 
-	<!-- <context:annotation-config /> -->
+	<context:annotation-config />
 
 </beans>
