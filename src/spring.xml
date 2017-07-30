@@ -9,31 +9,28 @@
 	<!-- <bean id="triangle" class="org.naren.kadiri.Triangle"> <property name="type" 
 		value="Equilateral" /> </bean> -->
 
-	<bean id="triangle" class="org.naren.kadiri.Triangle" autowire="byName">
-		<property name="point1" ref="pointA" />
-		<property name="point2" ref="pointB" />
-		<property name="point3" ref="pointC" />
-	</bean>
+	<!-- <bean id="triangle" class="org.naren.kadiri.Triangle"> <property name="point1" 
+		ref="pointA" /> <property name="point2" ref="pointB" /> <property name="point3" 
+		ref="pointC" /> </bean> -->
 
-	<bean id="pointA" class="org.naren.kadiri.Point">
-		<!-- <qualifier value="circleRalated" /> -->
+	<bean id="point1" class="org.naren.kadiri.Point">
+		<qualifier value="circleRalated" />
 		<property name="x" value="${pointA.pointX}" />
 		<property name="y" value="${pointA.pointY}" />
 	</bean>
 
-	<bean id="pointB" class="org.naren.kadiri.Point">
+	<bean id="point2" class="org.naren.kadiri.Point">
 		<property name="x" value="-20" />
 		<property name="y" value="0" />
 	</bean>
 
-	<bean id="pointC" class="org.naren.kadiri.Point">
+	<bean id="point3" class="org.naren.kadiri.Point">
 		<property name="x" value="20" />
 		<property name="y" value="0" />
 	</bean>
 
-	<bean id="circle" class="org.naren.kadiri.Circle" >
-		<!-- <property name="center" ref="pointC" /> -->
-	</bean>
+	<!-- <bean id="circle" class="org.naren.kadiri.Circle" > <property name="center" 
+		ref="pointC" /> </bean> -->
 
 	<!-- <bean class="org.naren.kadiri.DisplayBeanPostProcessor"></bean> -->
 	<!-- <bean class="org.naren.kadiri.DisplayNameBeanPP"></bean> -->
@@ -44,5 +41,6 @@
 	</bean>
 
 	<context:annotation-config />
+	<context:component-scan base-package="org.naren.kadiri" />
 
 </beans>
