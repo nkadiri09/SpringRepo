@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.beans.factory.support.ManagedMap;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -18,14 +20,16 @@ import org.springframework.stereotype.Service;
 @Service
 @Controller*/
 @Repository
-public class Circle implements Shape {
+public class Circle implements Shape, ApplicationEventPublisherAware {
 
 	private Point center;
+
+	private ApplicationEventPublisher publisher;
 
 	public Point getCenter() {
 		return center;
 	}
-	
+
 	@Autowired
 	private MessageSource messageSource;
 
@@ -45,10 +49,14 @@ public class Circle implements Shape {
 	@Override
 	public void draw() {
 		System.out.println("Inside the triangle");
-		//System.out.println("Center point is (" + center.getX() + "," + center.getY() + ")");
-		System.out.println(messageSource .getMessage("greeting", null, "Default Greeting", null));
-		System.out.println(messageSource .getMessage("Drawing.cricle", null, "Default Greeting", null));
-		System.out.println(messageSource .getMessage("Drawing.points", new Object [] {center.getX(), center.getY()}, "Default Greeting", null));
+		// System.out.println("Center point is (" + center.getX() + "," + center.getY()
+		// + ")");
+		System.out.println(messageSource.getMessage("greeting", null, "Default Greeting", null));
+		System.out.println(messageSource.getMessage("Drawing.cricle", null, "Default Greeting", null));
+		System.out.println(messageSource.getMessage("Drawing.points", new Object[] { center.getX(), center.getY() },
+				"Default Greeting", null));
+		DrawEvent drawEvent = new DrawEvent(this);
+		publisher.publishEvent(drawEvent);
 	}
 
 	@PostConstruct
@@ -59,5 +67,10 @@ public class Circle implements Shape {
 	@PreDestroy
 	public void destroy() {
 		System.out.println("It's a initialize method");
+	}
+
+	@Override
+	public void setApplicationEventPublisher(ApplicationEventPublisher publisher) {
+		this.publisher = publisher;
 	}
 }
